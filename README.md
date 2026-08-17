@@ -26,7 +26,7 @@ high-visibility vest numbers — without facial recognition.
 | Recognition | Character accuracy | 98.6% |
 
 ## Dataset
-- 190 annotated images, 96 unique employee IDs
+- 192 annotated images, 96 unique employee IDs
 - Two on-site collection batches
 - Expanded to 810 training images via augmentation
 
