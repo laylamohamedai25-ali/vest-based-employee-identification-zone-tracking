@@ -1,44 +1,57 @@
-# A Non-Biometric Computer Vision Framework for Vest-Based 
-# Employee Identification and Zone-Based Activity Tracking
+# A Non-Biometric Computer Vision Framework for Vest-Based Employee Identification and Zone-Based Activity Tracking in Industrial Workshops
 
 **MSc Artificial Intelligence — Bahrain Polytechnic 2026**
+**Student:** Layla Mohamed | ID: 12011122
 **Supervisor:** Dr. Mamoon Rashid
+**Industry Partner:** Ramsis Engineering, Bahrain
+
+---
 
 ## Project Overview
-Real-time computer vision system for automated employee 
-identification and zone-based activity tracking using 
-high-visibility vest numbers — without facial recognition.
+
+This project presents an end-to-end computer vision framework for automated employee identification and zone-based activity tracking in an industrial workshop environment. The system reads printed numeric identifiers on high-visibility vests using scene text recognition — without facial recognition, physical tags, or biometric data collection. The framework is fully compliant with Bahrain's Personal Data Protection Law (PDPL), Legislative Decree No. 30 of 2018.
+
+The system was developed as part of an MSc AI thesis at Bahrain Polytechnic, in partnership with Ramsis Engineering, Bahrain, and validated on real CCTV footage from the partner facility.
+
+---
 
 ## Pipeline
-1. CLAHE preprocessing + face blurring (PDPL compliance)
-2. YOLOv8n vest detection (mAP@0.5: 0.994, F1: 0.978)
-3. PARSeq scene text recognition (83.3% seq acc, 98.6% char acc)
-4. ByteTrack multi-object tracking
-5. Point-in-polygon geofencing
 
-## Results
+The framework chains five sequential processing stages:
+
+1. **O2 — Preprocessing:** Face blurring (PDPL compliance) → CLAHE contrast enhancement → Gaussian denoising → Unsharp masking → White balance correction
+2. **O3 — Detection:** YOLOv8n transfer learning — detects worker body and vest number patch simultaneously
+3. **O4 — Recognition:** PARSeq scene text recognition — reads printed employee ID from vest patch
+4. **O5a — Tracking:** ByteTrack multi-object tracking — maintains worker identity across frames
+5. **O5b — Geofencing:** Point-in-polygon zone assignment — logs zone entry, exit, and dwell time per employee
+
+---
+
+## Key Results
+
 | Stage | Metric | Value |
 |---|---|---|
-| Detection | mAP@0.5 | 0.994 |
-| Detection | F1 Score | 0.978 |
-| Detection | Recall | 1.000 |
-| Recognition | Full seq accuracy | 83.3% |
-| Recognition | Character accuracy | 98.6% |
+| O3 Detection | mAP@0.5 | 0.994 |
+| O3 Detection | F1 Score | 0.978 |
+| O3 Detection | Recall | 1.000 |
+| O3 Detection | Inference speed | 6ms per frame |
+| O4 Recognition | Full sequence accuracy (test) | 87.3% |
+| O4 Recognition | Character accuracy (test) | 95.5% |
+| O5 Real CCTV | Identification precision | 76.9% |
+| O5 Real CCTV | Unique employees identified | 7 |
+| O5 Real CCTV | Including generalisation cases | 3 (not in training set) |
+
+---
 
 ## Dataset
-- 192 annotated images, 96 unique employee IDs
-- Two on-site collection batches
-- Expanded to 810 training images via augmentation
 
-## Requirements
-- Python 3.12
-- PyTorch 2.11
-- Ultralytics YOLOv8
-- EasyOCR
-- PARSeq (baudm/parseq)
-- OpenCV
+- 192 annotated images covering 96 unique employee identities
+- Two on-site collection sessions at Ramsis Engineering
+- Both front-view and back-view orientations included
+- Manually annotated using Roboflow — two classes: worker, vest_number
+- Training split expanded from 135 to 810 images via augmentation
+- Real CCTV evaluation: 15.4-minute Preparation Area clip validated against 177-employee master list
 
+---
 
-## References
-Key papers: [4] Liu & Bhanu 2019, [15] Koshkina & Elder 2024,
-[8] ByteTrack Zhang et al. 2022, [9] Jeelani et al. 2021
+## Repository Structure
