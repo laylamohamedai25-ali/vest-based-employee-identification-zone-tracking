@@ -42,7 +42,6 @@ The framework chains five sequential processing stages:
 | Inference speed | 5.0ms per frame (NVIDIA T4) |
 | Epochs trained | 22 (best weights at epoch 12, early stopping patience=10) |
 | Optimiser | AdamW (lr=0.001667, auto-selected) |
-| Training time | ~5 minutes |
 
 ### O4 — Recognition (PARSeq)
 
@@ -112,10 +111,9 @@ pip install -e /content/parseq
 
 ### Running the notebook
 
-1. Upload `Worker_Detection_Thesis_Clean.ipynb` to Google Colab
+1. Upload `Worker_Detection_Thesis_project.ipynb` to Google Colab
 2. Run **Cell 2 (Session Restore)** first — installs all dependencies and mounts Drive
 3. Run cells in order from O1 through O5
-4. All frozen outputs from the original experimental runs are preserved in the notebook
 
 > **Note:** Reproduction requires access to the original Google Drive data including the annotated dataset, trained model weights, and CCTV clips. Contact the author for access.
 
@@ -161,9 +159,3 @@ MSc Thesis, Bahrain Polytechnic.
 This project is made available for academic research purposes. Commercial use requires written permission from Bahrain Polytechnic and Ramsis Engineering.
 
 ---
-
-## Contact
-
-**Layla Mohamed**  
-MSc Artificial Intelligence — Bahrain Polytechnic  
-Student ID: 12011122
