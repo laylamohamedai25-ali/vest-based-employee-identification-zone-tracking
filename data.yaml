@@ -1,0 +1,13 @@
+names:
+- vest_number
+- worker
+nc: 2
+roboflow:
+  license: CC BY 4.0
+  project: worker-detection-pzvbp
+  url: https://universe.roboflow.com/layla-yassin/worker-detection-pzvbp/dataset/3
+  version: 3
+  workspace: layla-yassin
+test: /content/Preprocessed_Dataset/test/images
+train: /content/Preprocessed_Dataset/train/images
+val: /content/Preprocessed_Dataset/valid/images
